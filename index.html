@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCraft - Online Code Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app" id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>CodeCraft</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="project-name">
+                    <input type="text" id="projectName" value="My Project" placeholder="Project Name">
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="btn btn-secondary" id="saveBtn" onclick="location.href='price.html'">
+                    <!-- <i class="fas fa-save"></i> -->
+                    Permuim
+                </button>
+                <button class="btn btn-secondary" id="saveBtn">
+                    <i class="fas fa-save"></i>
+                    Save
+                </button>
+                <button class="btn btn-secondary" id="downloadBtn">
+                    <i class="fas fa-download"></i>
+                    Download
+                </button>
+                <button class="btn btn-icon" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Code Editor Section -->
+            <div class="editor-section">
+                <div class="editor-header">
+                    <div class="tabs">
+                        <button class="tab active" data-tab="html">
+                            <i class="fab fa-html5"></i>
+                            HTML
+                        </button>
+                        <button class="tab" data-tab="css">
+                            <i class="fab fa-css3-alt"></i>
+                            CSS
+                        </button>
+                        <button class="tab" data-tab="js">
+                            <i class="fab fa-js-square"></i>
+                            JavaScript
+                        </button>
+                    </div>
+                    <div class="editor-actions">
+                        <button class="btn btn-sm" id="copyBtn">
+                            <i class="fas fa-copy"></i>
+                            Copy
+                        </button>
+                        <button class="btn btn-sm" id="formatBtn">
+                            <i class="fas fa-magic"></i>
+                            Format
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-container">
+                    <div class="editor active" id="htmlEditor">
+                        <textarea id="htmlCode" placeholder="Write your HTML code here..."><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to CodeCraft!</h1>
+        <p>Start coding and see your changes in real-time.</p>
+        <button onclick="showAlert()">Click Me!</button>
+    </div>
+</body>
+</html></textarea>
+                    </div>
+                    
+                    <div class="editor" id="cssEditor">
+                        <textarea id="cssCode" placeholder="Write your CSS code here...">/* Your CSS styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+p {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}</textarea>
+                    </div>
+                    
+                    <div class="editor" id="jsEditor">
+                        <textarea id="jsCode" placeholder="Write your JavaScript code here...">// Your JavaScript code
+function showAlert() {
+    alert('Hello from CodeCraft! 🚀');
+}
+
+// Add some interactive functionality
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('CodeCraft is ready!');
+    
+    // Add click animation to buttons
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+        });
+    });
+});</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <div class="preview-header">
+                    <div class="preview-title">
+                        <i class="fas fa-eye"></i>
+                        Live Preview
+                    </div>
+                    <div class="preview-actions">
+                        <button class="btn btn-sm" id="refreshBtn">
+                            <i class="fas fa-sync-alt"></i>
+                            Refresh
+                        </button>
+                        <button class="btn btn-sm" id="fullscreenBtn">
+                            <i class="fas fa-expand"></i>
+                            Fullscreen
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="preview-container">
+                    <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+                </div>
+            </div>
+        </main>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span id="statusText">Ready</span>
+            </div>
+            <div class="status-right">
+                <span id="charCount">0 characters</span>
+                <span class="separator">|</span>
+                <span id="lastSaved">Never saved</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Download Options</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="download-options">
+                    <button class="download-option" data-type="html">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML File</span>
+                        <small>Download as .html</small>
+                    </button>
+                    <button class="download-option" data-type="css">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS File</span>
+                        <small>Download as .css</small>
+                    </button>
+                    <button class="download-option" data-type="js">
+                        <i class="fab fa-js-square"></i>
+                        <span>JavaScript File</span>
+                        <small>Download as .js</small>
+                    </button>
+                    <button class="download-option" data-type="zip">
+                        <i class="fas fa-file-archive"></i>
+                        <span>Complete Project</span>
+                        <small>Download as .zip</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

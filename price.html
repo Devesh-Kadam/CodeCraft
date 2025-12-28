@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCraft - Pricing</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    /* Base Styles and CSS Variables */
+:root {
+    /* Light Theme */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border-color: #e2e8f0;
+    --accent-primary: #3b82f6;
+    --accent-secondary: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-lg: rgba(0, 0, 0, 0.15);
+    --gradient-start: #3b82f6;
+    --gradient-end: #8b5cf6;
+}
+
+.dark {
+    /* Dark Theme */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border-color: #334155;
+    --accent-primary: #60a5fa;
+    --accent-secondary: #a78bfa;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --error: #f87171;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-lg: rgba(0, 0, 0, 0.4);
+    --gradient-start: #60a5fa;
+    --gradient-end: #a78bfa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-secondary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--border-color);
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-1px);
+}
+
+.btn-full {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+}
+
+.gradient-btn {
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border: none;
+}
+
+.gradient-btn:hover {
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    opacity: 0.9;
+}
+
+/* Header */
+.site-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+}
+
+.logo i {
+    font-size: 1.5rem;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.main-nav a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--accent-primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* Pricing Section */
+.pricing-section {
+    padding: 80px 0;
+    background: linear-gradient(to bottom right, var(--bg-secondary), var(--bg-primary), var(--bg-secondary));
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-primary);
+    border-radius: 30px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.dark .badge {
+    background: rgba(96, 165, 250, 0.2);
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+/* Billing Toggle */
+.billing-toggle {
+    display: inline-flex;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 40px;
+}
+
+.toggle-btn {
+    position: relative;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.save-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--success);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* Pricing Cards */
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.pricing-card {
+    background: var(--bg-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.pricing-card:hover {
+    transform: translateY(70px);
+    box-shadow: 0 15px 30px var(--shadow-lg);
+}
+
+.pricing-card.highlighted {
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+}
+
+.dark .pricing-card.highlighted {
+    box-shadow: 0 10px 25px rgba(96, 165, 250, 0.15);
+}
+
+.popular-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.card-header {
+    padding: 30px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pricing-card.highlighted .card-header {
+    padding-top: 50px;
+}
+
+.plan-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.plan-icon.gradient {
+    background: linear-gradient(to bottom right, var(--gradient-start), var(--gradient-end));
+    color: white;
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.plan-description {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.plan-price {
+    margin-bottom: 20px;
+}
+
+.price-amount {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.price-period {
+    color: var(--text-secondary);
+}
+
+.price-saving {
+    font-size: 0.875rem;
+    color: var(--success);
+    margin-top: 5px;
+    font-weight: 500;
+    display: none;
+}
+
+.card-content {
+    padding: 30px;
+}
+
+.features-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.features-list ul {
+    list-style: none;
+}
+
+.features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+}
+
+.features-list i {
+    color: var(--success);
+    margin-top: 3px;
+}
+
+/* Trust Badges */
+.trust-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.badge-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+}
+
+/* FAQ Teaser */
+.faq-teaser {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-teaser p {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+/* Footer */
+.site-footer {
+    background: var(--bg-secondary);
+    padding: 60px 0 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: 10px;
+}
+
+.footer-content p {
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-column h4 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: var(--accent-primary);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding: 20px 0;
+}
+
+.footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .pricing-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .trust-badges {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-bottom .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pricing-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.pricing-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.pricing-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.pricing-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+/* Accessibility */
+button:focus,
+a:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+</style>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                <span onclick="location.href='index.html'">CodeCraft</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <!-- <li><a href="#">Features</a></li> -->
+                    <li><a href="#" class="active">Pricing</a></li>
+                    <!-- <li><a href="#">Docs</a></li>
+                    <li><a href="#">Contact</a></li> -->
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <!-- <a href="#" class="btn btn-outline">Log In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a> -->
+            </div>
+        </div>
+    </header>
+
+    <section class="pricing-section">
+        <div class="container">
+            <!-- Header -->
+            <div class="pricing-header">
+                <div class="badge">
+                    <i class="fa-solid fa-rocket"></i>
+                    Pricing Plans
+                </div>
+
+                <h2 class="title">
+                    Choose Your <span class="gradient-text">Perfect Plan</span>
+                </h2>
+
+                <p class="subtitle">
+                    Start coding for free, upgrade when you need more power. All plans include our core features with no hidden fees.
+                </p>
+
+                <!-- Billing Toggle -->
+                <div class="billing-toggle">
+                    <button class="toggle-btn active" data-billing="monthly">Monthly</button>
+                    <button class="toggle-btn" data-billing="yearly">
+                        Yearly
+                        <span class="save-badge">Save 20%</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="pricing-cards">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <h3 class="plan-name">Free</h3>
+
+                        <p class="plan-description">Perfect for getting started with coding</p>
+
+                        <div class="plan-price">
+                            <div class="price-amount">
+                                <span class="price">$0</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-outline btn-full">Get Started</button>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="features-list">
+                            <h4 class="features-title">
+                                <i class="fa-solid fa-shield"></i>
+                                What's included:
+                            </h4>
+                            <ul>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Basic code editor</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>HTML, CSS, JS support</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Live preview</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Local storage</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>5 projects limit</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Community support</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card highlighted">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="card-header">
+                        <div class="plan-icon gradient">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+
+                        <h3 class="plan-name">Pro</h3>
+
+                        <p class="plan-description">Best for professional developers</p>
+
+                        <div class="plan-price">
+                            <div class="price-amount">
+                                <span class="price" data-monthly="12" data-yearly="120">$12</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                            <div class="price-saving" data-saving="20">Save 20% annually</div>
+                        </div>
+
+                        <button class="btn btn-primary btn-full gradient-btn">Start Pro Trial</button>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="features-list">
+                            <h4 class="features-title">
+                                <i class="fa-solid fa-shield"></i>
+                                What's included:
+                            </h4>
+                            <ul>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Advanced code editor</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>All programming languages</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Real-time collaboration</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Cloud storage & sync</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Unlimited projects</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Advanced debugging tools</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Custom themes</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Priority support</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Export to GitHub</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ultimate Plan -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <div class="plan-icon">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+
+                        <h3 class="plan-name">Ultimate</h3>
+
+                        <p class="plan-description">For teams and enterprises</p>
+
+                        <div class="plan-price">
+                            <div class="price-amount">
+                                <span class="price" data-monthly="29" data-yearly="290">$29</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                            <div class="price-saving" data-saving="20">Save 20% annually</div>
+                        </div>
+
+                        <button class="btn btn-secondary btn-full">Contact Sales</button>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="features-list">
+                            <h4 class="features-title">
+                                <i class="fa-solid fa-shield"></i>
+                                What's included:
+                            </h4>
+                            <ul>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Everything in Pro</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Team collaboration</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Advanced analytics</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Custom integrations</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>White-label solution</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Dedicated support</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>SLA guarantee</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Custom deployment</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Advanced security</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="trust-badges">
+                <div class="badge-item">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Trusted by 10,000+ developers</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fa-solid fa-shield"></i>
+                    <span>30-day money-back guarantee</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>24/7 customer support</span>
+                </div>
+            </div>
+
+            <!-- FAQ Teaser -->
+            <div class="faq-teaser">
+                <p>Have questions about our pricing?</p>
+                <button class="btn btn-outline">View FAQ</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-code"></i>
+                    <span>CodeCraft</span>
+                </div>
+                <p>The modern online code editor for developers</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <!-- <li><a href="#">Docs</a></li>
+                        <li><a href="#">Changelog</a></li> -->
+                    </ul>
+                </div>
+                <!-- <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div> -->
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <!-- <li><a href="#">Tutorials</a></li> -->
+                        <li><a href="#">Templates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2023 CodeCraft. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <script src="script.js"></script> -->
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        enableDarkMode();
+    } else {
+        enableLightMode();
+    }
+    
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', function() {
+        if (htmlElement.classList.contains('dark')) {
+            enableLightMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+    
+    function enableDarkMode() {
+        htmlElement.classList.add('dark');
+        themeIcon.className = 'fa-solid fa-sun';
+        localStorage.setItem('theme', 'dark');
+    }
+    
+    function enableLightMode() {
+        htmlElement.classList.remove('dark');
+        themeIcon.className = 'fa-solid fa-moon';
+        localStorage.setItem('theme', 'light');
+    }
+    
+    // Billing Toggle
+    const billingToggles = document.querySelectorAll('.toggle-btn');
+    const priceElements = document.querySelectorAll('.price[data-monthly][data-yearly]');
+    const pricePeriods = document.querySelectorAll('.price-period');
+    const priceSavings = document.querySelectorAll('.price-saving');
+    
+    billingToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const billingType = this.dataset.billing;
+            
+            // Update active state
+            billingToggles.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update prices
+            priceElements.forEach(price => {
+                price.textContent = '$' + price.dataset[billingType];
+            });
+            
+            // Update period text
+            pricePeriods.forEach(period => {
+                period.textContent = billingType === 'yearly' ? '/year' : '/month';
+            });
+            
+            // Show/hide savings
+            priceSavings.forEach(saving => {
+                if (billingType === 'yearly') {
+                    saving.style.display = 'block';
+                } else {
+                    saving.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Card hover effects
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    
+    pricingCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            pricingCards.forEach(c => {
+                if (c !== this) {
+                    c.style.transform = 'scale(0.98)';
+                    c.style.opacity = '0.8';
+                }
+            });
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            pricingCards.forEach(c => {
+                c.style.transform = '';
+                c.style.opacity = '';
+            });
+        });
+    });
+    
+    // Button click effects
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.width = '1px';
+            ripple.style.height = '1px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.animation = 'ripple 0.6s linear';
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // Add ripple animation to stylesheet
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(100);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Scroll animations
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.pricing-card, .trust-badges, .faq-teaser');
+        
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('visible');
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Run once on load
+});
+</script>
+</html>
